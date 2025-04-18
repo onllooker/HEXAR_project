@@ -12,6 +12,7 @@ __pycache__/
 
 ### PDM ###
 .pdm.toml
+.pdm-python
 __pypackages__/
 
 ### PyCharm ###
