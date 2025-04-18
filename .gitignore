@@ -1,1 +1,64 @@
-HEXAR_data.db
+### Python ###
+# Виртуальное окружение
+.venv/
+venv/
+
+# Кэш и скомпилированные файлы
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyd
+*.pyo
+*$py.class
+
+### PDM ###
+pdm.lock
+.pdm.toml
+__pypackages__/
+
+### PyCharm ###
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+
+### Базы данных ###
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.frm
+*.myd
+*.myi
+*.ibd
+
+### PyQt ###
+*.ui~
+*.qrc~
+*_rc.py
+
+### Windows ###
+Thumbs.db
+Desktop.ini
+[Dd]esktop.ini
+*.lnk
+
+### Логи и временные файлы ###
+*.log
+*.bak
+*.tmp
+*.temp
+
+### Конфиги с секретами ###
+.env
+*.env
+secrets.ini
+config.ini
+credentials.json
+
+### Сборка ###
+build/
+dist/
+*.egg-info/
+*.spec

@@ -71,10 +71,3 @@ class DatabaseManager:
         """Автоматически закрывает соединение при удалении объекта."""
         self.close()
 
-
-# Пример использования
-if __name__ == "__main__":
-    db_manager = DatabaseManager()
-    db_manager.create_table('test_table')
-    db_manager.insert_data('test_table', '2023-10-01 12:00', 100.5, 50.3, "Тестовый комментарий")
-    db_manager.close()

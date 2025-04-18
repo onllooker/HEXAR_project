@@ -444,6 +444,46 @@
       <string/>
      </property>
     </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Reactor:</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="reactor_alarm">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>50</y>
+       <width>16</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QRadioButton::indicator
+                                   {
+                                   background-color : lightgreen
+                                   } </string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QTableView" name="tableView">
     <property name="geometry">
@@ -459,13 +499,26 @@
     <property name="geometry">
      <rect>
       <x>700</x>
-      <y>80</y>
+      <y>445</y>
       <width>93</width>
-      <height>28</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>All</string>
+     <string>Zoom</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="show_tables_btn">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>685</y>
+      <width>93</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select/View</string>
     </property>
    </widget>
   </widget>

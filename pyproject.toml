@@ -1,0 +1,24 @@
+[project]
+name = "HEXAR_sensors_manager"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "onllooker", email = "aanon0560@gmail.com"},
+]
+dependencies = [
+    "matplotlib==3.10.1",
+    "mplcursors==0.6",
+    "numpy==2.2.4",
+    "pandas==2.2.3",
+    "PyQt5==5.15.11",
+    "pyqtgraph==0.13.7",
+    "pyserial==3.5",
+    "seaborn==0.13.2"
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false

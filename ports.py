@@ -1,28 +1,27 @@
-import sys
-import glob
 import serial
+import serial.tools.list_ports
 
+class PortMonitor:
+    def __init__(self) -> None:
+        self.current_ports: set[str] = set()
 
-def serial_ports():
-    if sys.platform.startswith('win'):
-        ports = ['COM%s' % (i + 1) for i in range(256)]
-    elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-        # this excludes your current terminal "/dev/tty"
-        ports = glob.glob('/dev/tty[A-Za-z]*')
-    elif sys.platform.startswith('darwin'):
-        ports = glob.glob('/dev/tty.*')
-    else:
-        raise EnvironmentError('Unsupported platform')
+    def get_current_ports(self) -> set[str]:
+        available_ports = set()
+        for port in serial.tools.list_ports.comports():
+            try:
+                with serial.Serial(port.device, timeout=1) as ser:
+                    available_ports.add(port.device)
+            except (OSError, serial.SerialException):
+                # Порт занят или недоступен
+                continue
+        return available_ports
 
-    result = []
-    for port in ports:
-        try:
-            s = serial.Serial(port)
-            s.close()
-            result.append(port)
-        except (OSError, serial.SerialException):
-            pass
-    return result
+    def check_changes(self) -> tuple[list[str], list[str]]:
+        new_ports = self.get_current_ports()
+        added = new_ports - self.current_ports
+        removed = self.current_ports - new_ports
+        self.current_ports = new_ports
+        return list(added), list(removed)
 
-def baudrate():
+def baudrate() -> list[str]:
     return ['9600', '19200', '38400', '115200']

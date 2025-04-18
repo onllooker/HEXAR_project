@@ -4,7 +4,7 @@ from collections import deque
 from datetime import timedelta
 
 class PlotHandler:
-    def __init__(self, ui):
+    def __init__(self, ui:any)->None:
         self.ui = ui
         self.setup_plot()
         self.is_full_range = False  # Флаг для переключения масштаба
@@ -12,7 +12,7 @@ class PlotHandler:
         self.data = deque(maxlen=120)  # Храним последние 30 минут (120 точек по 15 сек)
         self.full_data = []  # Храним все данные
 
-    def setup_plot(self):
+    def setup_plot(self)->None:
         plot_container1 = self.ui.findChild(QtWidgets.QWidget, 'Plot_1')
         self.plot_widget1 = pg.PlotWidget()
         layout = QtWidgets.QVBoxLayout()
@@ -39,14 +39,14 @@ class PlotHandler:
         self.line1 = self.plot_widget1.plot(pen=pg.mkPen(color='b', width=2), name="Reactor")
         self.line2 = self.plot_widget1.plot(pen=pg.mkPen(color='g', width=2), name="Vapor")
 
-    def update_plot(self, timestamp, temp_reactor, temp_vapor):
+    def update_plot(self, timestamp, temp_reactor: float, temp_vapor: float):
         """Обновляет график новыми данными."""
         self.data.append((timestamp, temp_reactor, temp_vapor))
         self.full_data.append((timestamp, temp_reactor, temp_vapor))
 
         self.redraw()
 
-    def redraw(self):
+    def redraw(self)->None:
         """Перерисовывает график в зависимости от масштаба."""
         if self.is_full_range:
             x_data, y1_data, y2_data = zip(*self.full_data) if self.full_data else ([], [], [])
@@ -61,7 +61,6 @@ class PlotHandler:
             # Настроить подписи оси X
             # Рассчитаем интервал меток в зависимости от масштаба
             window_duration = (x_data[-1] - x_data[0]).total_seconds()
-            print(window_duration)
             if window_duration > 3600:  # Если окно больше часа, показывать метки реже
                 tick_interval = 600  # Каждые 10 минут
             elif window_duration > 1800:  # Если окно больше 30 минут, показывать каждую минуту
@@ -77,7 +76,7 @@ class PlotHandler:
             # Устанавливаем метки для оси X
             self.plot_widget1.getAxis("bottom").setTicks([ticks])
 
-    def toggle_scale(self):
+    def toggle_scale(self)->None:
         """Переключает между 30 минутами и полным масштабом."""
         self.is_full_range = not self.is_full_range
         self.redraw()
